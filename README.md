@@ -1,3 +1,3 @@
 # CRM_App
-Capstone CRM Application
+Capstone CRM Application\n
 This is my Computer Science Capstone project.
