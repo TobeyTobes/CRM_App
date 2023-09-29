@@ -67,5 +67,18 @@ def add_record(request):
                 return redirect('home')
         return render(request, 'add_record.html', {'form':form})
     else:
-        messages.success(request,"You Need to Be Logged In to Add Records!")
+        messages.success(request,"You Need to Be Logged In to Do That")
         return redirect('home')
+
+
+def delete_record(request, pk):
+    if request.user.is_authenticated:
+        delete_it = Record.objects.get(id=pk)
+        delete_it.delete()
+        messages.success(request, "Success! Record Deleted!")
+        return redirect('home')
+    else:
+        messages.success(request, "You Need to Be Logged In to Do That!")
+        return redirect('home')
+
+

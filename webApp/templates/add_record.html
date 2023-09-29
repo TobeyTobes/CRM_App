@@ -2,7 +2,9 @@
 {% block content %}
 
 <div class="col-md-6 offset-md-3">
-<h1>Add Record</h1>
+
+<div class="card bg-info-subtle">
+<h1 class="text-center">Add Record</h1>
 <br/>
 
 <form method="POST" action="{% url 'add_record' %}">
@@ -10,12 +12,12 @@
 
 	{{ form.as_p }}
 
+</div>
 <br/>
   <button type="submit" class="btn btn-outline-success">Add Record</button>
    <a href="{% url 'home' %}" class="btn btn-outline-info">Back</a>
 
 </form>
-
 
 </div>
 {% endblock %}
