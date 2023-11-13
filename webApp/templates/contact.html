@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+<div class="card bg-info-subtle">
+    <h1 class="text-center">Send Email</h1>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" class="form-control border border-info" id="exampleFormControlInput1" placeholder="name@example.com">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Send Message</label>
+        <textarea class="form-control border border-info" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>   
+
+
+</div>
+<br/>
+<a href="{% url 'home' %}" class="btn btn-outline-info">Back</a>
+
+<a href="{% url 'home' %}" class="btn btn-success">Send</a>
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}
