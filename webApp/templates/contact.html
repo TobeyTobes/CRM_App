@@ -4,21 +4,28 @@
 <div class="col-md-6 offset-md-3">
 <div class="card bg-info-subtle">
     <h1 class="text-center">Send Email</h1>
+    <form action="{% url 'contact' %}" method='post'>
+      {% csrf_token %}
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Email address</label>
-        <input type="email" class="form-control border border-info" id="exampleFormControlInput1" placeholder="name@example.com">
+        <input type="email" name="message-email" class="form-control border border-info" id="exampleFormControlInput1" placeholder="name@example.com">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Subject</label>
+        <input type="text" name="message-name" class="form-control border border-info" id="exampleFormControlInput1" placeholder="Email Subject">
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Send Message</label>
-        <textarea class="form-control border border-info" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <textarea name="message" class="form-control border border-info" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>   
 
+      <a href="{% url 'home' %}" class="btn btn-outline-info">Back</a>
 
+      <button type="submit" class="btn btn-success">Send</button>
+    </form>
 </div>
 <br/>
-<a href="{% url 'home' %}" class="btn btn-outline-info">Back</a>
 
-<a href="{% url 'home' %}" class="btn btn-success">Send</a>
 
 </div>
 

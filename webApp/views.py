@@ -106,8 +106,9 @@ def contact(request):
             message_name, # subject
             message, # message
             message_email, # from email
-            ['ajtobey93@gmail.com'], # To Email
+            ['tobey01@nsuok.edu'], # To Email
 			)
+        messages.success(request, "Message Sent!")
         return render(request, 'contact.html', {'message_name': message_name})
     else:
         return render(request, 'contact.html', {})
