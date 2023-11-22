@@ -4,7 +4,7 @@ from django.contrib import messages
 from .forms import SignUpForm, AddRecordForm
 from .models import Record
 from django.core.mail import send_mail
-
+from django.db.models import Q
 
 def home(request):
     records = Record.objects.all()
@@ -95,6 +95,16 @@ def update_record(request, pk):
     else:
         messages.success(request, "You Need to Be Logged In to Do That!")
         return redirect('home')
+
+
+def search_records(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        records = Record.objects.filter(Q(first_name__contains=searched) | Q(last_name__contains=searched) | Q(state__contains=searched) | Q(city__contains=searched) | Q(zipcode__contains=searched) | Q(address__contains=searched) | Q(email__contains=searched))
+        return render(request, 'search_records.html', {'searched':searched, 'records':records})
+    else:
+        return redirect('home')
+
 
 def contact(request):
     if request.method == "POST":

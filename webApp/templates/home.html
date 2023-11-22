@@ -3,14 +3,14 @@
 {% block content %}
 
 
-
 {% if user.is_authenticated %}
 
 <h1 class="text-center">Records</h1>
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid ">
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="d-flex" method=POST action="{% url 'search' %}">
+      {% csrf_token %}
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
       <button class="btn btn-outline-info" type="submit">Search</button>
     </form>
   </div>
@@ -67,20 +67,13 @@
     <div class="form-group">
       <input type="password" class="form-control border border-info" name="password", placeholder="Password" required>
     </div>
-    <br/>
-    
-    <br/>
-
-</div>        
-    <br/>
+    <br/>    
+</div>            
 </br>
     <button type="submit" class="btn btn-outline-info position-absolute start-50 translate-middle">Login</button>
     
-  </form>
-
-  
+  </form> 
 </div>
-
 
 {% endif %}
 
