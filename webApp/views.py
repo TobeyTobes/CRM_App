@@ -6,6 +6,8 @@ from .models import Record
 from django.core.mail import send_mail
 from django.db.models import Q
 
+
+# Login to view records (home page)
 def home(request):
     records = Record.objects.all()
     if request.method == 'POST':
@@ -22,14 +24,16 @@ def home(request):
             return redirect('home')          
     else:
         return render(request, 'home.html', {'records':records})
-    
 
+    
+# Logout function
 def logout_user(request):
     logout(request)
     messages.success(request, "Logout Successful!")
     return redirect('home')
 
 
+# Register new user function
 def register_user(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -49,6 +53,7 @@ def register_user(request):
     return render(request, 'register.html', {'form':form})
 
 
+# View individual record function
 def customer_record(request, pk):
     if request.user.is_authenticated:
         customer_record = Record.objects.get(id=pk)
@@ -58,6 +63,7 @@ def customer_record(request, pk):
         return redirect('home')
 
 
+# Add new customer record function
 def add_record(request):
     form = AddRecordForm(request.POST or None)
     if request.user.is_authenticated:
@@ -72,6 +78,7 @@ def add_record(request):
         return redirect('home')
 
 
+# Delete customer record function
 def delete_record(request, pk):
     if request.user.is_authenticated:
         delete_it = Record.objects.get(id=pk)
@@ -83,6 +90,7 @@ def delete_record(request, pk):
         return redirect('home')
 
 
+# Update record function
 def update_record(request, pk):
     if request.user.is_authenticated:
         current_record = Record.objects.get(id=pk)
@@ -97,6 +105,7 @@ def update_record(request, pk):
         return redirect('home')
 
 
+# Search records function
 def search_records(request):
     if request.method == "POST":
         searched = request.POST['searched']
@@ -105,7 +114,7 @@ def search_records(request):
     else:
         return redirect('home')
 
-
+# Send email function
 def contact(request):
     if request.method == "POST":
         message_name = request.POST['message-name']
